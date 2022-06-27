@@ -41,7 +41,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         mainStage = stage;
         startLogInView();
-        stage.setTitle("FMS");
+        stage.setTitle("Marketplace System");
         stage.show();
     }
 
