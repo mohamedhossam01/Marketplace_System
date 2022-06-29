@@ -82,7 +82,7 @@ public class ItemDaoJdbc implements  ItemDao{
                 "FROM items, items_category, categories\n" +
                 "WHERE categories.name LIKE \"%" + category + "%\"\n" +
                 "AND items_category.item_id = items.id\n" +
-                "AND items_category.category_id = categories.id" +
+                "AND items_category.category_id = categories.id\n" +
                 "AND items.id not in(" +
                 "   select item_id" +
                 "   from buy" +
