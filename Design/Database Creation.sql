@@ -5,7 +5,7 @@ use marketplace;
 create table customers(
 	id int auto_increment,
     full_name varchar(128),
-    email varchar(512) not null,
+    email varchar(512) not null UNIQUE,
     password varchar(512) not null,
     cash int not null default 0,
     primary key(id)
