@@ -20,7 +20,7 @@ create table items(
 
 create table buy(
 	customer_id int,
-    item_id int,
+    item_id int UNIQUE,
     paid tinyint,
     foreign key(customer_id) references customers(id),
     foreign key(item_id) references items(id),
