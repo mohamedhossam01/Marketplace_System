@@ -4,8 +4,10 @@ import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.example.marketplace.model.Customer;
+import com.example.marketplace.model.Item;
 
 public class CustomerDaoJdbc implements CustomerDao{
 
@@ -74,6 +76,22 @@ public class CustomerDaoJdbc implements CustomerDao{
 
     @Override
     public boolean setCostumerCashTo(long costumerId, int setAmount) {
-        return false;
+        String sql = "UPDATE customers\n" +
+                "SET customers.cash ="+ setAmount + "\n" +
+                "WHERE customers.id =" +costumerId + ";";
+        Connection conn = null;
+        try{
+            conn = Jdbc.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.executeUpdate();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+        finally{
+            Jdbc.closeConnection(conn);
+        }
+        return true;
     }
 }
