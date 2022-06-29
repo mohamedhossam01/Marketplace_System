@@ -70,5 +70,10 @@ public class CustomerDaoJdbc implements CustomerDao{
             Jdbc.closeConnection(conn);
         }
 		return true;
-	} 
+	}
+
+    @Override
+    public boolean setCostumerCashTo(long costumerId, int setAmount) {
+        return false;
+    }
 }

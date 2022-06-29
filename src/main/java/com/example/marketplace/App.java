@@ -25,15 +25,24 @@ public class App extends Application {
         }
         mainStage.setScene(scene);
     }
+
+    public static void startLogInView(){
+        startView("view/login-view.fxml");
+    }
+
     public static void startSignUpView(){
         startView("view/signup-view.fxml");
     }
 
     public static void startCustomerView(){
-        startView("view/customer-view.fxml");
+        startView("view/costumer-home-view.fxml");
     }
 
-    public static void startLogInView(){
+    public static void startAdminView(){
+        startView("view/admin-view.fxml");
+    }
+
+    public static void startCartView(){
         startView("view/login-view.fxml");
     }
 

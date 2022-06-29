@@ -7,4 +7,5 @@ public interface CustomerDao {
     Customer findCustomerByEmail(String email);
     String hashPassword(String password);
     boolean insertNewCustomer(String email, String password, String fullName);
+    boolean setCostumerCashTo(long costumerId, int setAmount);
 }
