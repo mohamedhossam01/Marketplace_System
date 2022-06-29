@@ -127,4 +127,26 @@ public class ItemDaoJdbc implements  ItemDao{
         }
         return items;
     }
+
+    @Override
+    public boolean setToPaid(Long customerId, Long itemId){
+        String sql = "UPDATE buy\n" +
+                "SET paid = \"1\"\n" +
+                "WHERE customer_id = " + customerId +"\n" +
+                "AND  item_id =" + itemId + ";";
+        Connection conn = null;
+        try{
+            conn = Jdbc.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.executeUpdate();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+        finally{
+            Jdbc.closeConnection(conn);
+        }
+        return true;
+    };
 }
