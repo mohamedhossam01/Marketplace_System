@@ -16,7 +16,11 @@ public class ItemDaoJdbc implements  ItemDao{
                 "WHERE categories.name LIKE \"% " + category + "%\"\n" +
                 "AND items.name LIKE \"% " + name +  "%\"\n" +
                 "AND items_category.item_id = items.id\n" +
-                "AND items_category.category_id = categories.id;";
+                "AND items_category.category_id = categories.id\n" +
+                "AND items.id not in(" +
+                "   select item_id" +
+                "   from buy" +
+                ");";
         Connection conn = null;
         ArrayList<Item> items = new ArrayList<>();
         try{
@@ -44,7 +48,11 @@ public class ItemDaoJdbc implements  ItemDao{
     public ArrayList<Item> findItemByName(String name) {
         String sql = "select *\n" +
                 "FROM items\n" +
-                "WHERE items.name LIKE \"% " + name + "%\";";
+                "WHERE items.name LIKE \"% " + name + "%\"" +
+                "AND items.id not in(" +
+                "   select item_id" +
+                "   from buy" +
+                ");";
         Connection conn = null;
         ArrayList<Item> items = new ArrayList<>();
         try{
@@ -74,7 +82,11 @@ public class ItemDaoJdbc implements  ItemDao{
                 "FROM items, items_category, categories\n" +
                 "WHERE categories.name LIKE \"% " + category + "%\"\n" +
                 "AND items_category.item_id = items.id\n" +
-                "AND items_category.category_id = categories.id;";
+                "AND items_category.category_id = categories.id" +
+                "AND items.id not in(" +
+                "   select item_id" +
+                "   from buy" +
+                ");";
         Connection conn = null;
         ArrayList<Item> items = new ArrayList<>();
         try{
