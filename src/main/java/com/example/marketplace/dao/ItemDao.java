@@ -10,4 +10,5 @@ public interface ItemDao {
     ArrayList<Item> findItemByName(String name);
     ArrayList<Item> findItemByCategory(String category);
     ArrayList<Item> getCartContentsFor(Long costumerId);
+    boolean setToPaid(Long customerId, Long itemId);
 }
