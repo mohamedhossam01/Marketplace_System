@@ -141,6 +141,38 @@ public class ItemDaoJdbc implements  ItemDao{
     }
 
     @Override
+    public ArrayList<Item> getAvailableItems()
+    {
+        String sql = "SELECT * \n" +
+                "FROM items\n" +
+                "WHERE items.id not in(" +
+                "   select item_id" +
+                "   from buy" +
+                ");";
+        Connection conn = null;
+        ArrayList<Item> items = new ArrayList<>();
+        try{
+            conn = Jdbc.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                long item_id = rs.getLong("id");
+                String item_name = rs.getString("name");
+                int item_price  = rs.getInt("price");
+                Item item = new Item(item_id, item_name, item_price);
+                items.add(item);
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        finally{
+            Jdbc.closeConnection(conn);
+        }
+        return items;
+    }
+
+    @Override
     public boolean setToPaid(Long customerId, Long itemId){
         String sql = "UPDATE buy\n" +
                 "SET paid = \"1\"\n" +
