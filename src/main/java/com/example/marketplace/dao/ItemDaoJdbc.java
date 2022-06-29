@@ -149,4 +149,32 @@ public class ItemDaoJdbc implements  ItemDao{
         }
         return true;
     };
+
+    @Override
+    public boolean setToAdded(Long customerId, Long itemId, boolean state)
+    {
+        String sql;
+        if(state)
+        {
+            sql = "INSERT INTO buy (customer_id, item_id, paid) VALUES (" + customerId + ", " + itemId + ", \"0\");";
+        }
+        else
+        {
+            sql = "DELETE FROM buy WHERE customer_id = " + customerId + " AND item_id = " + itemId + ";";
+        }
+        Connection conn = null;
+        try{
+            conn = Jdbc.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.executeUpdate();
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        finally{
+            Jdbc.closeConnection(conn);
+        }
+        return true;
+    }
 }
