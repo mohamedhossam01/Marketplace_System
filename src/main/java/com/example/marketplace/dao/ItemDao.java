@@ -11,6 +11,7 @@ public interface ItemDao {
     ArrayList<Item> findItemByCategory(String category);
     ArrayList<Item> getCartContentsFor(Long costumerId);
     ArrayList<Item> getAvailableItems();
+    ArrayList<Item> getHistoryFor(long customerId);
     boolean setToPaid(Long customerId, Long itemId);
     boolean setToAdded(Long customerId, Long itemId, boolean state);
 

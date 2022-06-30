@@ -221,4 +221,34 @@ public class ItemDaoJdbc implements  ItemDao{
         }
         return true;
     }
+
+    @Override
+    public ArrayList<Item> getHistoryFor(long customerId){
+        String sql = "SELECT items.id, items.name, items.price\n" +
+                "FROM items, buy\n" +
+                "WHERE buy.customer_id =" + customerId + "\n" +
+                "And buy.paid = \"1\"\n" +
+                "And buy.item_id = items.id;";
+        Connection conn = null;
+        ArrayList<Item> items = new ArrayList<>();
+        try{
+            conn = Jdbc.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                long item_id = rs.getLong("id");
+                String item_name = rs.getString("name");
+                int item_price  = rs.getInt("price");
+                Item item = new Item(item_id, item_name, item_price);
+                items.add(item);
+            }
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        finally{
+            Jdbc.closeConnection(conn);
+        }
+        return items;
+    }
 }

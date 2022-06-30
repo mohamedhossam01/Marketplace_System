@@ -8,7 +8,7 @@ public class Jdbc {
     static Connection getConnection() {
         Connection conn =null;
         try{
-             conn = DriverManager.getConnection("jdbc:mysql://localhost/marketplace","marketplace", "marketplace");
+             conn = DriverManager.getConnection("jdbc:mysql://192.168.1.139/marketplace","marketplace", "marketplace");
         }
         catch(SQLException ex){
             System.err.println("couldn't open connection with mysql database");
