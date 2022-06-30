@@ -11,17 +11,16 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class AdminController {
 
     AdminDaoJdbc currentAdmin;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize() {
         currentAdmin = new AdminDaoJdbc();
     }
 
     @FXML
-    public void onBack(ActionEvent e){
+    public void onBack(ActionEvent e) {
         App.startLogInView();
     }
 

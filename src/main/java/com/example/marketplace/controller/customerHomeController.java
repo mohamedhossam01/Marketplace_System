@@ -4,16 +4,16 @@ import com.example.marketplace.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class customerHomeController implements Initializable {
+public class customerHomeController{
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize() {
         name.setText(App.mainCustomer.getFullName());
         email.setText(App.mainCustomer.getEmail());
         deposit_cash.setText(String.valueOf(App.mainCustomer.getCash()));
@@ -33,7 +33,16 @@ public class customerHomeController implements Initializable {
 
     @FXML
     public void onDeposit(ActionEvent e) {
-        int amount = Integer.parseInt(money_deposit.getText());
+        String amountText = money_deposit.getText();
+
+        if (amountText.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Please enter an amount to be deposit");
+            alert.show();
+            return;
+        }
+
+        int amount = Integer.parseInt(amountText);
         App.mainCustomer.setCash(App.mainCustomer.getCash() + amount);
         deposit_cash.setText(String.valueOf(App.mainCustomer.getCash()));
     }
@@ -41,5 +50,9 @@ public class customerHomeController implements Initializable {
     @FXML
     public void onBack(ActionEvent e){
         App.startLogInView();
+    }
+
+    public void manageCart(ActionEvent e) {
+        App.startCartView();
     }
 }

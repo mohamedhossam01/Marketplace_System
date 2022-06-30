@@ -18,7 +18,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(name));
         Scene scene = null;
         try{
-            scene = new Scene(fxmlLoader.load(), 800, 600);
+            scene = new Scene(fxmlLoader.load());
         }
         catch(Exception ex){
             ex.printStackTrace();
@@ -43,7 +43,7 @@ public class App extends Application {
     }
 
     public static void startCartView(){
-        startView("view/login-view.fxml");
+        startView("view/cartAndSearch-view.fxml");
     }
 
     @Override

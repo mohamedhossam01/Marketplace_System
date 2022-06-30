@@ -1,5 +1,7 @@
 package com.example.marketplace.model;
 
+import com.example.marketplace.dao.CustomerDaoJdbc;
+
 public class Customer {
     private long id;
     private String fullName;
@@ -37,5 +39,7 @@ public class Customer {
 	}
 	public void setCash(int cash) {
 		this.cash = cash;
+		CustomerDaoJdbc dao = new CustomerDaoJdbc();
+		dao.setCostumerCashTo(id, cash);
 	}
 }

@@ -13,8 +13,8 @@ public class ItemDaoJdbc implements  ItemDao{
     public ArrayList<Item> findItemByNameAndCategory(String name, String category) {
         String sql = "select DISTINCT *\n" +
                 "FROM items, items_category, categories\n" +
-                "WHERE categories.name LIKE \"% " + category + "%\"\n" +
-                "AND items.name LIKE \"% " + name +  "%\"\n" +
+                "WHERE categories.name LIKE \"%" + category + "%\"\n" +
+                "AND items.name LIKE \"%" + name +  "%\"\n" +
                 "AND items_category.item_id = items.id\n" +
                 "AND items_category.category_id = categories.id\n" +
                 "AND items.id not in(" +
@@ -48,7 +48,7 @@ public class ItemDaoJdbc implements  ItemDao{
     public ArrayList<Item> findItemByName(String name) {
         String sql = "select *\n" +
                 "FROM items\n" +
-                "WHERE items.name LIKE \"% " + name + "%\"" +
+                "WHERE items.name LIKE \"%" + name + "%\"" +
                 "AND items.id not in(" +
                 "   select item_id" +
                 "   from buy" +
@@ -80,9 +80,9 @@ public class ItemDaoJdbc implements  ItemDao{
     public ArrayList<Item> findItemByCategory(String category) {
         String sql = "select DISTINCT *\n" +
                 "FROM items, items_category, categories\n" +
-                "WHERE categories.name LIKE \"% " + category + "%\"\n" +
+                "WHERE categories.name LIKE \"%" + category + "%\"\n" +
                 "AND items_category.item_id = items.id\n" +
-                "AND items_category.category_id = categories.id" +
+                "AND items_category.category_id = categories.id\n" +
                 "AND items.id not in(" +
                 "   select item_id" +
                 "   from buy" +

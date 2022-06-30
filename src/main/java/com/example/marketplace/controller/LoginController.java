@@ -20,11 +20,18 @@ public class LoginController {
 
     @FXML
     protected void onSignInButtonClick() {
-        String userEmail = email.getText();
-        if (userEmail.equals("Admin") && password.getText().equals("Admin")){
+
+        if (email.getText().equals("Admin") && password.getText().equals("Admin")){
             App.startAdminView();
             return;
         }
+        if (email.getText().isEmpty() || password.getText().isEmpty()){
+            Alert alert= new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Please type your email and password");
+            alert.show();
+            return;
+        }
+        String userEmail = email.getText();
         CustomerDao dao = new CustomerDaoJdbc();
         Customer customer = dao.findCustomerByEmail(userEmail);
         String customerPassword = dao.hashPassword(password.getText());

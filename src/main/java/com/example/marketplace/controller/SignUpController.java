@@ -4,6 +4,7 @@ import com.example.marketplace.App;
 import com.example.marketplace.dao.CustomerDao;
 import com.example.marketplace.dao.CustomerDaoJdbc;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -42,7 +43,7 @@ public class SignUpController {
     }
 
     @FXML
-    protected void onCloseButtonClick(){
+    public void onBack(ActionEvent e){
         App.startLogInView();
     }
 
