@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 public class customerHomeController{
 
+    @FXML
     public void initialize() {
         name.setText(App.mainCustomer.getFullName());
         email.setText(App.mainCustomer.getEmail());
@@ -32,7 +33,7 @@ public class customerHomeController{
     TextField money_deposit = new TextField();
 
     @FXML
-    public void onDeposit(ActionEvent e) {
+    public void onDeposit() {
         String amountText = money_deposit.getText();
 
         if (amountText.isEmpty()){
@@ -48,11 +49,17 @@ public class customerHomeController{
     }
 
     @FXML
-    public void onBack(ActionEvent e){
+    public void onBack(){
         App.startLogInView();
     }
 
-    public void manageCart(ActionEvent e) {
+    @FXML
+    public void onManageCart() {
         App.startCartView();
+    }
+
+    @FXML
+    public void onHistory() {
+        App.startHistoryView();
     }
 }

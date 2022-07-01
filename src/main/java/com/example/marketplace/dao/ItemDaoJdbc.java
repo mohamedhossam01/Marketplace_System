@@ -6,6 +6,7 @@ import com.example.marketplace.model.Item;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemDaoJdbc implements  ItemDao{
@@ -195,31 +196,20 @@ public class ItemDaoJdbc implements  ItemDao{
     };
 
     @Override
-    public boolean setToAdded(Long customerId, Long itemId, boolean state)
-    {
+    public void setToAdded(Long customerId, Long itemId, boolean state) throws SQLException {
         String sql;
-        if(state)
-        {
+        if (state) {
             sql = "INSERT INTO buy (customer_id, item_id, paid) VALUES (" + customerId + ", " + itemId + ", \"0\");";
-        }
-        else
-        {
+        } else {
             sql = "DELETE FROM buy WHERE customer_id = " + customerId + " AND item_id = " + itemId + ";";
         }
         Connection conn = null;
-        try{
-            conn = Jdbc.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.executeUpdate();
-        }
-        catch(Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-        finally{
-            Jdbc.closeConnection(conn);
-        }
-        return true;
+        conn = Jdbc.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.executeUpdate();
+
+        Jdbc.closeConnection(conn);
+
     }
 
     @Override

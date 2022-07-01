@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 
 
 public class SignUpController {
-    
+
     @FXML
     TextField name;
 
@@ -23,27 +23,26 @@ public class SignUpController {
     PasswordField password;
 
     @FXML
-    protected void onSignUpButtonClick(){
-       CustomerDao dao = new CustomerDaoJdbc();
-       if (email.getText().isEmpty() || password.getText().isEmpty() || name.getText().isEmpty()){
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setHeaderText("Wrong data please try again");
-           alert.showAndWait();
-           return;
-       }
-       boolean b = dao.insertNewCustomer(email.getText(), password.getText(), name.getText());
-       if(!b){
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-           alert.setHeaderText("Wrong data please try again");
-           alert.show();
-       }
-       else{
-           App.startLogInView();
-       }
+    protected void onSignUpButtonClick() {
+        CustomerDao dao = new CustomerDaoJdbc();
+        if (email.getText().isEmpty() || password.getText().isEmpty() || name.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Wrong data please try again");
+            alert.showAndWait();
+            return;
+        }
+        boolean b = dao.insertNewCustomer(email.getText(), password.getText(), name.getText());
+        if (!b) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Wrong data please try again");
+            alert.show();
+        } else {
+            App.startLogInView();
+        }
     }
 
     @FXML
-    public void onBack(ActionEvent e){
+    public void onBack() {
         App.startLogInView();
     }
 

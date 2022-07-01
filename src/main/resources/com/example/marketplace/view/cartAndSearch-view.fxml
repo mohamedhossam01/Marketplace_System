@@ -24,7 +24,7 @@
             </BorderPane>
             <BorderPane>
                <center>
-                  <Label prefHeight="36.0" prefWidth="151.0" text="Cart contents">
+                  <Label text="Cart contents">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -52,7 +52,7 @@
             <BorderPane minHeight="-Infinity" prefHeight="44.0" />
             <BorderPane>
                <center>
-                  <Label prefHeight="36.0" prefWidth="77.0" text="Search">
+                  <Label text="Search">
                      <font>
                         <Font size="25.0" />
                      </font>

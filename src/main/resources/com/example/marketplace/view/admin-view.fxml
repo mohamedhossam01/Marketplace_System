@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marketplace.controller.AdminController">
    <children>
@@ -32,61 +32,70 @@
       </BorderPane>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0">
          <center>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overview of the system" wrappingWidth="323.07421875">
+            <Label text="Overview of the system" BorderPane.alignment="CENTER">
                <font>
-                  <Font size="31.0" />
+                  <Font size="25.0" />
                </font>
-            </Text>
+            </Label>
          </center>
       </BorderPane>
       <BorderPane prefHeight="70.0" prefWidth="1000.0">
          <left>
             <BorderPane BorderPane.alignment="CENTER">
-               <right>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of registered accounts" wrappingWidth="305.86865234375" BorderPane.alignment="CENTER">
+               <left>
+                  <Label text="Number of registered accounts" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="21.0" />
                      </font>
-                  </Text>
-               </right>
+                  </Label>
+               </left>
             </BorderPane>
          </left>
-         <center>
-            <TextField fx:id="numberOfRegisteredAccounts" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-         </center>
          <padding>
             <Insets left="40.0" />
          </padding>
+         <right>
+            <TextField fx:id="numberOfRegisteredAccounts" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="150.0" />
+               </BorderPane.margin></TextField>
+         </right>
       </BorderPane>
       <BorderPane prefHeight="70.0" prefWidth="1000.0">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
          <left>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of items sold" wrappingWidth="305.86865234375" BorderPane.alignment="CENTER">
+            <Label text="Number of items sold" BorderPane.alignment="CENTER">
                <font>
                   <Font size="21.0" />
                </font>
-            </Text>
+            </Label>
          </left>
-         <center>
-            <TextField fx:id="numberOfItemsSold" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-         </center>
+         <right>
+            <TextField fx:id="numberOfItemsSold" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="150.0" />
+               </BorderPane.margin></TextField>
+         </right>
+      </BorderPane>
+      <BorderPane prefHeight="70.0" prefWidth="1000.0">
          <padding>
             <Insets left="40.0" />
          </padding>
-      </BorderPane>
-      <BorderPane prefHeight="70.0" prefWidth="1000.0">
          <left>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of available items" wrappingWidth="305.86865234375" BorderPane.alignment="CENTER">
+            <Label text="Number of available items" BorderPane.alignment="CENTER">
                <font>
                   <Font size="21.0" />
                </font>
-            </Text>
+            </Label>
          </left>
-         <center>
-            <TextField fx:id="numberOfAvailableItems" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-         </center>
-         <padding>
-            <Insets left="40.0" />
-         </padding>
+         <right>
+            <TextField fx:id="numberOfAvailableItems" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="150.0" />
+               </BorderPane.margin></TextField>
+         </right>
       </BorderPane>
    </children>
 </VBox>
