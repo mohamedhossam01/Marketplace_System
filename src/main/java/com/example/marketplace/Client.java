@@ -1,6 +1,10 @@
 package com.example.marketplace;
 
 import com.example.marketplace.controller.cartAndSearchController;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
+import javafx.fxml.FXMLLoader;
 
 import java.io.*;
 import java.net.Socket;
@@ -10,6 +14,7 @@ public class Client {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+    private cartAndSearchController cartController;
 
     public Client(Socket socket){
         try{
@@ -40,10 +45,10 @@ public class Client {
                 while(socket.isConnected()){
                     try{
                         msgFromServer = bufferedReader.readLine();
-                        if(msgFromServer == "updateView"){
-
-                            //cartAndSearchController c = new cartAndSearchController();
-                            //c.updateView();
+                        if(msgFromServer != null){
+                            System.out.println("update now");
+                            cartAndSearchController cartController = App.fxmlLoader.getController();
+                            Platform.runLater(() -> cartController.updateView(false));
                         }
                     }catch(IOException ex) {
                         closeEverything(socket,bufferedReader, bufferedWriter);
