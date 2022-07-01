@@ -20,7 +20,7 @@ public class AdminController {
     }
 
     @FXML
-    public void onBack(ActionEvent e) {
+    public void onBack() {
         App.startLogInView();
     }
 

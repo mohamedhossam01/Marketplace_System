@@ -1,12 +1,12 @@
 package com.example.marketplace.controller;
 
 import com.example.marketplace.App;
-import com.example.marketplace.ServerLogic.Server;
 import com.example.marketplace.dao.CustomerDao;
 import com.example.marketplace.dao.CustomerDaoJdbc;
 import com.example.marketplace.dao.Jdbc;
 import com.example.marketplace.model.Customer;
 
+import com.example.marketplace.ServerLogic.Server;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

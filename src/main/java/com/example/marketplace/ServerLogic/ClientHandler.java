@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class ClientHandler implements Runnable{
-
+    
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
     private BufferedReader bufferedReader;
@@ -22,7 +22,7 @@ public class ClientHandler implements Runnable{
             closeEverything(socket, bufferedReader,bufferedWriter);
         }
     }
-
+    
     @Override
     public void run() {
         String messageFromClient;
@@ -33,7 +33,7 @@ public class ClientHandler implements Runnable{
             }catch(IOException e){
                 closeEverything(socket, bufferedReader , bufferedWriter);
                 break;
-
+                
             }
         }
     }
@@ -47,11 +47,11 @@ public class ClientHandler implements Runnable{
                 }
             } catch (IOException ex) {
                 closeEverything(socket, bufferedReader,bufferedWriter);
-
+                
             }
         }
     }
-
+    
     public void removeClientHandler(){
         clientHandlers.remove(this);
     }
@@ -70,6 +70,6 @@ public class ClientHandler implements Runnable{
         } catch(IOException e){
             e.printStackTrace();
         }
-
+    
     }
 }

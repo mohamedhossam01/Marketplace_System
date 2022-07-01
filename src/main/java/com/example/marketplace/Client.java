@@ -46,7 +46,6 @@ public class Client {
                     try{
                         msgFromServer = bufferedReader.readLine();
                         if(msgFromServer != null){
-                            System.out.println("update now");
                             cartAndSearchController cartController = App.fxmlLoader.getController();
                             Platform.runLater(() -> cartController.updateView(false));
                         }

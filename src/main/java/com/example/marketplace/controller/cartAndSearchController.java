@@ -1,7 +1,9 @@
 package com.example.marketplace.controller;
 
 import com.example.marketplace.App;
+import com.example.marketplace.Client;
 import com.example.marketplace.dao.ItemDaoJdbc;
+import com.example.marketplace.dao.Jdbc;
 import com.example.marketplace.model.Customer;
 import com.example.marketplace.model.Item;
 import javafx.event.ActionEvent;
@@ -15,13 +17,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class cartAndSearchController {
     //public Customer customer = App.mainCustomer;
 
+    // global db handler
     ItemDaoJdbc globalItemDao;
 
+    // global client
+    Client client;
     @FXML
     VBox cartVBox = new VBox();
 
@@ -48,22 +56,66 @@ public class cartAndSearchController {
 
         // update the ds
         globalItemDao = new ItemDaoJdbc();
-        itemsAvailable = globalItemDao.getAvailableItems();
         itemsInCart = globalItemDao.getCartContentsFor(App.mainCustomer.getId());
+        itemsAvailable = globalItemDao.getAvailableItems();
 
-        updateView();
+        // client initialization
+        Socket socket = null;
+
+        String ip = null;
+        if (Jdbc.ip == null)
+            ip = "localhost";
+
+        try {
+            socket = new Socket(ip, 1234);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (socket != null) {
+            client = new Client(socket);
+            client.listenForMessage();
+        }
+
+        updateView(false);
     }
 
-    void updateView() {
+    public void updateView(boolean isSearch) {
         // clearing the windows
         searchVBox.getChildren().clear();
         cartVBox.getChildren().clear();
+
+        if (!isSearch){
+            globalItemDao = new ItemDaoJdbc();
+            itemsInCart = globalItemDao.getCartContentsFor(App.mainCustomer.getId());
+            itemsAvailable = globalItemDao.getAvailableItems();
+        }
+
+//        ArrayList<Item> itemsAvailableDB = globalItemDao.getAvailableItems();
+//
+//        ArrayList<Long> toRemove = new ArrayList<>();
+//        for (int i = 0; i < itemsAvailable.size(); i++) {
+//            boolean flag = false;
+//            for (int j = 0; j < itemsAvailableDB.size(); j++) {
+//                if (itemsAvailable.get(i).getId().equals(itemsAvailableDB.get(j).getId())) {
+//                    flag = true;
+//                    break;
+//                }
+//            }
+//            if (!flag)
+//                toRemove.add(itemsAvailable.get(i).getId());
+//        }
+//
+//        for (int i = 0; i < toRemove.size(); i++){
+//            for (int  j = 0; j < itemsAvailable.size(); j++){
+//                if (toRemove.get(i) == itemsAvailable.get(j).getId())
+//                    itemsAvailable.remove(i);
+//            }
+//        }
 
         // show available items
         for (int i = 0; i < itemsAvailable.size(); i++) {
             Item item = itemsAvailable.get(i);
             Label itemInfo = new Label("name: " + item.getName() + "\n" + "price: " + item.getPrice());
-
             addButton = new Button();
             addButton.setText("Add");
             addButton.setStyle("-fx-font-size: 15");
@@ -79,13 +131,19 @@ public class cartAndSearchController {
                 HBox hb = (HBox) bt.getParent().getParent();
                 int x = searchVBox.getChildren().indexOf(hb);
 
-                itemsInCart.add(itemsAvailable.get(x));
+                try {
+                    globalItemDao.setToAdded(App.mainCustomer.getId(), itemsAvailable.get(x).getId(),
+                            true);
+                    itemsInCart.add(itemsAvailable.get(x));
+                } catch (Exception ee) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("Cannot add this item to the cart");
+                    alert.show();
+                }
 
-                globalItemDao.setToAdded(App.mainCustomer.getId(), itemsAvailable.get(x).getId(),
-                        true);
-
+                client.sendMessage("updateView");
                 itemsAvailable.remove(x);
-                updateView();
+                updateView(true);
             });
 
             HBox hb = new HBox();
@@ -122,11 +180,16 @@ public class cartAndSearchController {
 
                 itemsAvailable.add(itemsInCart.get(x));
 
-                globalItemDao.setToAdded(App.mainCustomer.getId(), itemsInCart.get(x).getId(),
-                        false);
+                try {
+                    globalItemDao.setToAdded(App.mainCustomer.getId(), itemsInCart.get(x).getId(),
+                            false);
+                } catch (SQLException ee) {
+                    ee.printStackTrace();
+                }
 
+                client.sendMessage("updateView");
                 itemsInCart.remove(x);
-                updateView();
+                updateView(true);
             });
 
             HBox hb = new HBox();
@@ -143,7 +206,7 @@ public class cartAndSearchController {
     }
 
     @FXML
-    public void onSearch(){
+    public void onSearch() {
         String nameToSearch = nameTF.getText();
         String categoryToSearch = categoryTF.getText();
 
@@ -151,13 +214,12 @@ public class cartAndSearchController {
             itemsAvailable = globalItemDao.findItemByNameAndCategory(nameToSearch, categoryToSearch);
         } else if (!nameToSearch.isEmpty()) {
             itemsAvailable = globalItemDao.findItemByName(nameToSearch);
-        } else if (!categoryToSearch.isEmpty()){
+        } else if (!categoryToSearch.isEmpty()) {
             itemsAvailable = globalItemDao.findItemByCategory(categoryToSearch);
         } else {
             itemsAvailable = globalItemDao.getAvailableItems();
         }
-
-        updateView();
+        updateView(true);
     }
 
     @FXML
@@ -179,8 +241,7 @@ public class cartAndSearchController {
             }
             itemsInCart = new ArrayList<>();
         }
-
-        updateView();
+        updateView(true);
     }
 
     @FXML

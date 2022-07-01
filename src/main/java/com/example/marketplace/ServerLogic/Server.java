@@ -10,26 +10,32 @@ public class Server {
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
-    public void startServer(){
-        try{
-            while(!serverSocket.isClosed()){
-                Socket socket=serverSocket.accept();
-                ClientHandler clienthandler = new ClientHandler(socket);
-                Thread thread = new Thread(clienthandler);
-                thread.start();
-            }
-        } catch(IOException e){
 
-        }
+    public void startServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (!serverSocket.isClosed()) {
+                        Socket socket = serverSocket.accept();
+                        ClientHandler clienthandler = new ClientHandler(socket);
+                        Thread thread = new Thread(clienthandler);
+                        thread.start();
+                    }
+                } catch (IOException e) {
+
+                }
+            }
+        }).start();
     }
 
-    public void closeServerSocket(){
-        try{
-            if(serverSocket != null){
+    public void closeServerSocket() {
+        try {
+            if (serverSocket != null) {
                 serverSocket.close();
             }
 
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

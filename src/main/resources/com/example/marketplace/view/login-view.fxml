@@ -34,11 +34,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marketplace.controller.LoginController">
   <children>
@@ -56,8 +60,14 @@
                         </VBox>
                         <VBox alignment="CENTER" spacing="5.0">
                            <children>
-                              <Button fx:id="signIn" mnemonicParsing="false" onAction="#onSignInButtonClick" prefHeight="24.0" prefWidth="226.0" text="Sign In" />
-                              <Button fx:id="signUp" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="24.0" prefWidth="226.0" text="Sign up" />
+                              <Button fx:id="signIn" mnemonicParsing="false" onAction="#onSignInButtonClick" prefHeight="24.0" prefWidth="226.0" text="Sign In">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Button>
+                              <Button fx:id="signUp" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="24.0" prefWidth="226.0" text="Sign up">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Button>
                            </children>
                         </VBox>
                      </children>
@@ -72,5 +82,27 @@
             </StackPane>
          </children>
     </AnchorPane>
+      <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <Label text="DB server IP">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="ipTF" promptText="192.168.1.x" />
+            <Button mnemonicParsing="false" onAction="#onSetDBIp" text="Set" />
+            <BorderPane prefHeight="58.0" prefWidth="523.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <right>
+                  <Button mnemonicParsing="false" onAction="#onStartSocket" text="Start socket" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+      </HBox>
   </children>
 </VBox>

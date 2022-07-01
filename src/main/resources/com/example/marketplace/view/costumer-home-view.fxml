@@ -142,17 +142,36 @@
          </children>
       </HBox>
       <Line endX="1000.0" />
-      <BorderPane prefHeight="84.0" prefWidth="906.0">
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <BorderPane prefHeight="100.0" prefWidth="500.0">
+               <center>
+                  <Button mnemonicParsing="false" onAction="#onHistory" prefHeight="44.0" prefWidth="500.0" text="Account history">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Button>
+               </center>
+            </BorderPane>
+            <BorderPane prefWidth="500.0">
+               <center>
+                  <Button mnemonicParsing="false" onAction="#onManageCart" prefWidth="500.0" text="Manage cart">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </center>
+            </BorderPane>
+         </children>
          <VBox.margin>
-            <Insets />
+            <Insets left="50.0" right="50.0" />
          </VBox.margin>
-         <center>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#manageCart" text="Manage card">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </center>
-      </BorderPane>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </HBox>
    </children>
 </VBox>

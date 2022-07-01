@@ -11,19 +11,21 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    private static Stage mainStage;
+    public static Stage mainStage;
     public static Customer mainCustomer;
+    public static FXMLLoader fxmlLoader;
 
     private static void startView(String name){
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(name));
+        fxmlLoader = new FXMLLoader(App.class.getResource(name));
         Scene scene = null;
         try{
-            scene = new Scene(fxmlLoader.load());
+            scene = new Scene(fxmlLoader.load(), 1000, 600);
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
         mainStage.setScene(scene);
+        mainStage.setResizable(false);
     }
 
     public static void startLogInView(){
@@ -46,6 +48,10 @@ public class App extends Application {
         startView("view/cartAndSearch-view.fxml");
     }
 
+    public static void startHistoryView(){
+        startView("view/history-view.fxml");
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         mainStage = stage;
@@ -55,6 +61,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        // Server.main(args);
         launch();
     }
 
