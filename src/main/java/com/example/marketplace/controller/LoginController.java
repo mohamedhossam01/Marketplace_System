@@ -1,8 +1,10 @@
 package com.example.marketplace.controller;
 
 import com.example.marketplace.App;
+import com.example.marketplace.ServerLogic.Server;
 import com.example.marketplace.dao.CustomerDao;
 import com.example.marketplace.dao.CustomerDaoJdbc;
+import com.example.marketplace.dao.Jdbc;
 import com.example.marketplace.model.Customer;
 
 import javafx.fxml.FXML;
@@ -19,14 +21,17 @@ public class LoginController {
     private PasswordField password;
 
     @FXML
+    private TextField ipTF;
+
+    @FXML
     protected void onSignInButtonClick() {
 
-        if (email.getText().equals("Admin") && password.getText().equals("Admin")){
+        if (email.getText().equals("Admin") && password.getText().equals("Admin")) {
             App.startAdminView();
             return;
         }
-        if (email.getText().isEmpty() || password.getText().isEmpty()){
-            Alert alert= new Alert(Alert.AlertType.ERROR);
+        if (email.getText().isEmpty() || password.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Please type your email and password");
             alert.show();
             return;
@@ -36,8 +41,8 @@ public class LoginController {
         Customer customer = dao.findCustomerByEmail(userEmail);
         String customerPassword = dao.hashPassword(password.getText());
 
-        if(customer == null || !customer.getPassword().equals(customerPassword)){
-            Alert alert= new Alert(Alert.AlertType.ERROR);
+        if (customer == null || !customer.getPassword().equals(customerPassword)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Wrong email or password");
             alert.show();
             return;
@@ -48,8 +53,18 @@ public class LoginController {
     }
 
     @FXML
-    protected void onSignUpButtonClick(){
+    protected void onSignUpButtonClick() {
         App.startSignUpView();
+    }
+
+    @FXML
+    protected void onSetDBIp() {
+        Jdbc.setIP(ipTF.getText());
+    }
+
+    @FXML
+    protected void onStartSocket() {
+        Server.startNow();
     }
 
 }

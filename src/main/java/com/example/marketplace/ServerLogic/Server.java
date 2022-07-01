@@ -19,7 +19,7 @@ public class Server {
                 thread.start();
             }
         } catch(IOException e){
-            this.closeServerSocket();
+
         }
     }
 
@@ -34,14 +34,14 @@ public class Server {
         }
     }
 
-    public static void main(String[] args)  {
-        try{
-            ServerSocket serverSocket = new ServerSocket(1234);
-            Server server = new Server(serverSocket);
-            server.startServer();
-        }catch(IOException e){
+    public static void startNow() {
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(1234);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
+        Server server = new Server(serverSocket);
+        server.startServer();
     }
 }
