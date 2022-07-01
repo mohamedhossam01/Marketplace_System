@@ -6,25 +6,17 @@ public class Item {
     private long id;
     private String name;
     private int price;
-    private ArrayList<String> categories;
 
     public Item(){
 
     }
 
-    public Item(long id, String name, int price, ArrayList<String> categories){
+    public Item(long id, String name, int price){
         this.id = id;
         this.name = name;
         this.price = price;
-        this.categories = categories;
     }
 
-	public ArrayList<String> getCategories() {
-		return categories;
-	}
-	public void setCategories(ArrayList<String> categories) {
-		this.categories = categories;
-	}
 	public void setId(long id) {
 		this.id = id;
 	}
