@@ -25,11 +25,6 @@ public class LoginController {
 
     @FXML
     protected void onSignInButtonClick() {
-
-        if (email.getText().equals("Admin") && password.getText().equals("Admin")) {
-            App.startAdminView();
-            return;
-        }
         if (email.getText().isEmpty() || password.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Please type your email and password");
@@ -61,10 +56,4 @@ public class LoginController {
     protected void onSetDBIp() {
         Jdbc.setIP(ipTF.getText());
     }
-
-    @FXML
-    protected void onStartSocket() {
-        Server.startNow();
-    }
-
 }

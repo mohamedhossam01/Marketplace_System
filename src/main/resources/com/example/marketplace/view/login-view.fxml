@@ -45,8 +45,8 @@
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marketplace.controller.LoginController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+   <children>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -81,7 +81,7 @@
                </children>
             </StackPane>
          </children>
-    </AnchorPane>
+      </AnchorPane>
       <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="600.0" spacing="20.0">
          <children>
             <Label text="DB server IP">
@@ -95,14 +95,11 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-               <right>
-                  <Button mnemonicParsing="false" onAction="#onStartSocket" text="Start socket" BorderPane.alignment="CENTER" />
-               </right>
             </BorderPane>
          </children>
          <VBox.margin>
             <Insets left="20.0" />
          </VBox.margin>
       </HBox>
-  </children>
+   </children>
 </VBox>
