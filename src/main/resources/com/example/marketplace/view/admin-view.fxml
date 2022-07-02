@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marketplace.controller.AdminController">
    <children>
-      <BorderPane prefHeight="164.0" prefWidth="1000.0">
+      <BorderPane prefHeight="139.0" prefWidth="1000.0">
          <bottom>
             <Button mnemonicParsing="false" onAction="#OnGenerateReport" text="Generate Report" BorderPane.alignment="CENTER">
                <font>
@@ -18,17 +19,13 @@
                </font>
             </Button>
          </bottom>
-         <top>
-            <BorderPane BorderPane.alignment="CENTER">
-               <left>
-                  <Button mnemonicParsing="false" onAction="#onBack" prefHeight="42.0" prefWidth="100.0" text="Back" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-               </left>
-            </BorderPane>
-         </top>
+         <center>
+            <Label text="Server Site" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </center>
       </BorderPane>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1000.0">
          <center>
@@ -96,6 +93,32 @@
                   <Insets right="150.0" />
                </BorderPane.margin></TextField>
          </right>
+      </BorderPane>
+      <BorderPane prefHeight="201.0" prefWidth="980.0">
+         <VBox.margin>
+            <Insets left="20.0" />
+         </VBox.margin>
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="DB server IP">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ipTF" promptText="192.168.1.x" />
+                  <Button mnemonicParsing="false" onAction="#onSetDBIp" text="Set" />
+                  <BorderPane prefHeight="58.0" prefWidth="523.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <right>
+                        <Button mnemonicParsing="false" onAction="#onStartSocket" text="Start socket" BorderPane.alignment="CENTER" />
+                     </right>
+                  </BorderPane>
+               </children>
+            </HBox>
+         </bottom>
       </BorderPane>
    </children>
 </VBox>

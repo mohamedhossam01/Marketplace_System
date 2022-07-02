@@ -1,8 +1,11 @@
 package com.example.marketplace.controller;
 
 import com.example.marketplace.App;
+import com.example.marketplace.ServerLogic.ClientHandler;
+import com.example.marketplace.ServerLogic.Server;
 import com.example.marketplace.dao.AdminDao;
 import com.example.marketplace.dao.AdminDaoJdbc;
+import com.example.marketplace.dao.Jdbc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,15 +16,13 @@ import java.util.ResourceBundle;
 
 public class AdminController {
 
-    AdminDaoJdbc currentAdmin;
+    private AdminDaoJdbc currentAdmin;
+
+    @FXML
+    private TextField ipTF;
 
     public void initialize() {
         currentAdmin = new AdminDaoJdbc();
-    }
-
-    @FXML
-    public void onBack() {
-        App.startLogInView();
     }
 
     @FXML
@@ -38,5 +39,15 @@ public class AdminController {
         numberOfRegisteredAccounts.setText(String.valueOf(currentAdmin.getNumberOfRegisteredAccounts()));
         numberOfItemsSold.setText(String.valueOf(currentAdmin.getNumberOfSoldItems()));
         numberOfAvailableItems.setText(String.valueOf(currentAdmin.getNumberOfAvailableItems()));
+    }
+
+    @FXML
+    protected void onSetDBIp() {
+        Jdbc.setIP(ipTF.getText());
+    }
+
+    @FXML
+    protected void onStartSocket() {
+        Server.startNow();
     }
 }
