@@ -1,10 +1,9 @@
 package com.example.marketplace.controller;
 
-import com.example.marketplace.App;
+import com.example.marketplace.ClientApp;
 import com.example.marketplace.dao.CustomerDao;
 import com.example.marketplace.dao.CustomerDaoJdbc;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -37,13 +36,13 @@ public class SignUpController {
             alert.setHeaderText("Wrong data please try again");
             alert.show();
         } else {
-            App.startLogInView();
+            ClientApp.startLogInView();
         }
     }
 
     @FXML
     public void onBack() {
-        App.startLogInView();
+        ClientApp.startLogInView();
     }
 
 }

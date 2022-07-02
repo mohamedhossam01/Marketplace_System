@@ -51,9 +51,26 @@ jlinkZip {
 }
 
 jar {
+    {
+        baseName = 'Client'
+        manifest {
+            attributes(
+                    'Main-Class': "com.example.marketplace.ClientMain",
+            )
+        }
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
+}
+
+jar {
+    baseName = 'Server'
     manifest {
         attributes(
-                'Main-Class': "com.example.marketplace.Main",
+                'Main-Class': "com.example.marketplace.ServerMain",
         )
     }
     from {

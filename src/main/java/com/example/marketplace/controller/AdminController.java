@@ -1,18 +1,11 @@
 package com.example.marketplace.controller;
 
-import com.example.marketplace.App;
-import com.example.marketplace.ServerLogic.ClientHandler;
 import com.example.marketplace.ServerLogic.Server;
-import com.example.marketplace.dao.AdminDao;
 import com.example.marketplace.dao.AdminDaoJdbc;
 import com.example.marketplace.dao.Jdbc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class AdminController {
 

@@ -1,23 +1,18 @@
 package com.example.marketplace.controller;
 
-import com.example.marketplace.App;
-import javafx.event.ActionEvent;
+import com.example.marketplace.ClientApp;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class customerHomeController{
 
     @FXML
     public void initialize() {
-        name.setText(App.mainCustomer.getFullName());
-        email.setText(App.mainCustomer.getEmail());
-        deposit_cash.setText(String.valueOf(App.mainCustomer.getCash()));
+        name.setText(ClientApp.mainCustomer.getFullName());
+        email.setText(ClientApp.mainCustomer.getEmail());
+        deposit_cash.setText(String.valueOf(ClientApp.mainCustomer.getCash()));
     }
 
     @FXML
@@ -44,22 +39,22 @@ public class customerHomeController{
         }
 
         int amount = Integer.parseInt(amountText);
-        App.mainCustomer.setCash(App.mainCustomer.getCash() + amount);
-        deposit_cash.setText(String.valueOf(App.mainCustomer.getCash()));
+        ClientApp.mainCustomer.setCash(ClientApp.mainCustomer.getCash() + amount);
+        deposit_cash.setText(String.valueOf(ClientApp.mainCustomer.getCash()));
     }
 
     @FXML
     public void onBack(){
-        App.startLogInView();
+        ClientApp.startLogInView();
     }
 
     @FXML
     public void onManageCart() {
-        App.startCartView();
+        ClientApp.startCartView();
     }
 
     @FXML
     public void onHistory() {
-        App.startHistoryView();
+        ClientApp.startHistoryView();
     }
 }

@@ -9,14 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class ServerApp extends Application {
 
     public static Stage mainStage;
     public static Customer mainCustomer;
     public static FXMLLoader fxmlLoader;
 
     private static void startView(String name){
-        fxmlLoader = new FXMLLoader(App.class.getResource(name));
+        fxmlLoader = new FXMLLoader(ClientApp.class.getResource(name));
         Scene scene = null;
         try{
             scene = new Scene(fxmlLoader.load(), 1000, 600);
@@ -28,34 +28,14 @@ public class App extends Application {
         mainStage.setResizable(false);
     }
 
-    public static void startLogInView(){
-        startView("view/login-view.fxml");
-    }
-
-    public static void startSignUpView(){
-        startView("view/signup-view.fxml");
-    }
-
-    public static void startCustomerView(){
-        startView("view/costumer-home-view.fxml");
-    }
-
     public static void startAdminView(){
         startView("view/admin-view.fxml");
-    }
-
-    public static void startCartView(){
-        startView("view/cartAndSearch-view.fxml");
-    }
-
-    public static void startHistoryView(){
-        startView("view/history-view.fxml");
     }
 
     @Override
     public void start(Stage stage) throws IOException {
         mainStage = stage;
-        startLogInView();
+        startAdminView();
         stage.setTitle("Marketplace System");
         stage.show();
     }

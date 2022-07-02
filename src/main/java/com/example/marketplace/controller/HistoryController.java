@@ -1,12 +1,10 @@
 package com.example.marketplace.controller;
 
-import com.example.marketplace.App;
+import com.example.marketplace.ClientApp;
 import com.example.marketplace.dao.ItemDaoJdbc;
 import com.example.marketplace.model.Item;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -23,7 +21,7 @@ public class HistoryController {
     void initialize() {
         ItemDaoJdbc dao = new ItemDaoJdbc();
 
-        ArrayList<Item> itemsHistory = dao.getHistoryFor(App.mainCustomer.getId());
+        ArrayList<Item> itemsHistory = dao.getHistoryFor(ClientApp.mainCustomer.getId());
         for (int i = 0; i < itemsHistory.size(); i++) {
             Item item = itemsHistory.get(i);
             Label itemInfo = new Label("name: " + item.getName() + "\n" + "price: " + item.getPrice());
@@ -47,6 +45,6 @@ public class HistoryController {
 
     @FXML
     public void onBack() {
-        App.startCustomerView();
+        ClientApp.startCustomerView();
     }
 }

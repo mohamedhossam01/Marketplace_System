@@ -1,7 +1,7 @@
 package com.example.marketplace;
 
-public class Main {
+public class ServerMain {
     public static void main(String[] args) {
-        App.main(args);
+        ServerApp.main(args);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.marketplace.controller;
 
-import com.example.marketplace.App;
+import com.example.marketplace.ClientApp;
 import com.example.marketplace.Client;
 import com.example.marketplace.dao.ItemDaoJdbc;
 import com.example.marketplace.dao.Jdbc;
@@ -56,7 +56,7 @@ public class cartAndSearchController {
 
         // update the ds
         globalItemDao = new ItemDaoJdbc();
-        itemsInCart = globalItemDao.getCartContentsFor(App.mainCustomer.getId());
+        itemsInCart = globalItemDao.getCartContentsFor(ClientApp.mainCustomer.getId());
         itemsAvailable = globalItemDao.getAvailableItems();
 
         // client initialization
@@ -86,7 +86,7 @@ public class cartAndSearchController {
 
         if (!isSearch){
             globalItemDao = new ItemDaoJdbc();
-            itemsInCart = globalItemDao.getCartContentsFor(App.mainCustomer.getId());
+            itemsInCart = globalItemDao.getCartContentsFor(ClientApp.mainCustomer.getId());
             itemsAvailable = globalItemDao.getAvailableItems();
         }
 
@@ -132,7 +132,7 @@ public class cartAndSearchController {
                 int x = searchVBox.getChildren().indexOf(hb);
 
                 try {
-                    globalItemDao.setToAdded(App.mainCustomer.getId(), itemsAvailable.get(x).getId(),
+                    globalItemDao.setToAdded(ClientApp.mainCustomer.getId(), itemsAvailable.get(x).getId(),
                             true);
                     itemsInCart.add(itemsAvailable.get(x));
                 } catch (Exception ee) {
@@ -181,7 +181,7 @@ public class cartAndSearchController {
                 itemsAvailable.add(itemsInCart.get(x));
 
                 try {
-                    globalItemDao.setToAdded(App.mainCustomer.getId(), itemsInCart.get(x).getId(),
+                    globalItemDao.setToAdded(ClientApp.mainCustomer.getId(), itemsInCart.get(x).getId(),
                             false);
                 } catch (SQLException ee) {
                     ee.printStackTrace();
@@ -224,7 +224,7 @@ public class cartAndSearchController {
 
     @FXML
     public void onCheckout(ActionEvent e) {
-        Customer customer = App.mainCustomer;
+        Customer customer = ClientApp.mainCustomer;
         int sum = 0;
         for (Item item : itemsInCart) {
             sum += item.getPrice();
@@ -246,6 +246,6 @@ public class cartAndSearchController {
 
     @FXML
     public void onBack(ActionEvent e) {
-        App.startCustomerView();
+        ClientApp.startCustomerView();
     }
 }

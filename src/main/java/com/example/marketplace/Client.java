@@ -2,9 +2,6 @@ package com.example.marketplace;
 
 import com.example.marketplace.controller.cartAndSearchController;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.fxml.FXMLLoader;
 
 import java.io.*;
 import java.net.Socket;
@@ -46,7 +43,7 @@ public class Client {
                     try{
                         msgFromServer = bufferedReader.readLine();
                         if(msgFromServer != null){
-                            cartAndSearchController cartController = App.fxmlLoader.getController();
+                            cartAndSearchController cartController = ClientApp.fxmlLoader.getController();
                             Platform.runLater(() -> cartController.updateView(false));
                         }
                     }catch(IOException ex) {
